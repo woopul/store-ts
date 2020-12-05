@@ -18,8 +18,8 @@ const Logo = styled.h1`
 `
 
 const User = styled.div`
-  width: 48px;
-  height: 48px;
+  min-width: 48px;
+  min-height: 48px;
   background: #bada55;
   border-radius: 50%; 
   margin-left: auto;
@@ -36,10 +36,6 @@ const Header = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement> | React.MouseEvent<SVGElement, MouseEvent>) => {
     event.preventDefault();
-    // (async () => {
-    //   const response = await getWeatherData(searchValue);
-    //   console.log(response)
-    // })();
     console.log('YEAYY')
   }
 

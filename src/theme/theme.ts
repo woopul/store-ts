@@ -5,24 +5,20 @@ const theme = {
       light: '#FD6E35',
       dark: '#CC4400'
     },
-    secondary: {
-      main: '#FF5500',
-      light: '#FD6E35',
-      dark: '#CC4400'
-    },
     attention: {
-      main: '#D64242',
-      light: '#F04A4A',
-      dark: 'BD3A3A'
+      main: '#F9A52B',
     },
     background: {
       body: '#F8F8FA',
-      base: '#1F1F1F',
-      alt1: '#303030',
-      alt2: '#484848'
+    },
+    button: {
+      primary: '#4460F7',
+      hover: '#2140E8',
+      disabled: '#9194A5',
     },
     text: {
-      primary: '#000'
+      primary: '#000',
+      cardDescription: '#9194A5', 
     }
   },
   spacing: (multiplier = 1) => `${4 * multiplier}px`,

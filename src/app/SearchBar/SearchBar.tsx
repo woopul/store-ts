@@ -3,10 +3,13 @@ import { useDispatch } from 'react-redux';
 import products from '../../config/api';
 import { API_PRODUCT_URI } from '../../constants/api'
 import { BiSearch } from 'react-icons/bi';
+import {ReactComponent as CheckdIcon} from '../../assets/icons/check.svg';
 import {
   SearchForm,
   SearchInput,
-  Checkbox
+  Checkbox,
+  StyledCheckbox,
+  CheckboxContainer
 } from './SearchItemElements';
 import { fetchProductsAction, setProductsAction } from  '../../store/products/actions'
 import styled from 'styled-components';
@@ -25,7 +28,6 @@ const SearchBar = () => {
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     event.persist();
-    console.log('event', event)
     setSearchData(prev => ({...prev, [event.target.name]: event.target.value}))
   }
 
@@ -44,10 +46,31 @@ const SearchBar = () => {
           placeholder='Search' />
         <BiSearch onClick={handleSubmit} className='search-icon' />
       </label>
-      <Checkbox onChange={handleChange} type="checkbox" name="active" id="active" />
-      <label htmlFor="active">Active</label>
-      <Checkbox onChange={handleChange} type="checkbox" name="promo" id="promo" />
-      <label htmlFor="promo">Promo</label>
+      <CheckboxContainer >
+        <StyledCheckbox >
+          <span className="checkbox__input">
+            <Checkbox onChange={handleChange} type="checkbox" name="active" />
+            <span className="checkbox__control">
+              <CheckdIcon className='checkbox__icon' />
+            </span>
+            </span>
+          <span className="checkbox__label">
+            Active
+          </span>
+        </StyledCheckbox>
+
+        <StyledCheckbox >
+          <span className="checkbox__input">
+            <Checkbox onChange={handleChange} type="checkbox" name="promo"  />
+            <span className="checkbox__control">
+              <CheckdIcon className='checkbox__icon' />
+            </span>
+          </span>
+          <span className="checkbox__label">
+            Promo
+          </span>
+        </StyledCheckbox>
+      </CheckboxContainer>
     </SearchForm >
   )
 }

@@ -5,5 +5,5 @@ export interface Product {
   image: string;
   name: string;
   promo: false;
-  rating: boolean;
+  rating: number;
 }

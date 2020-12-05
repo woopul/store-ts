@@ -20,7 +20,7 @@ const ProductsContent = () => {
   useEffect(() => {
     const renderProducts = async () => {
       const response = await products.get(`${API_PRODUCT_URI}?limit=10`);
-      const content = await response.data.items.map((item: Product) => <ProductCard {...item} />)
+      const content = await response.data.items.map((item: Product, i: number) => <ProductCard key={i} {...item} />)
       setCards(content)
     }
     renderProducts()
