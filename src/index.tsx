@@ -1,15 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { AppProviders } from 'providers/AppProviders';
+import { Provider } from 'react-redux';
 import { App } from './app/App';
+import store from './store';
 import GlobalStyle from './GlobalStyle';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-  <AppProviders>
-  <GlobalStyle />
-    <App />
-  </AppProviders>,
+  <Provider store={store}>
+    <AppProviders>
+    <GlobalStyle />
+      <App />
+    </AppProviders>
+  </Provider>,
   document.getElementById('root'),
   );
 

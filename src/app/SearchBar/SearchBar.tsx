@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import products from '../../config/api';
 import { API_PRODUCT_URI } from '../../constants/api'
 import { BiSearch } from 'react-icons/bi';
@@ -7,6 +8,7 @@ import {
   SearchInput,
   Checkbox
 } from './SearchItemElements';
+import { fetchProductsAction, setProductsAction } from  '../../store/products/actions'
 import styled from 'styled-components';
 
 interface SearchData {
@@ -16,6 +18,7 @@ interface SearchData {
 }
 
 const SearchBar = () => {
+  const dispatch = useDispatch();
   const [searchData, setSearchData] = useState<SearchData>({searchValue: '', active: false, promo: false})
 
   const handleChange = (
@@ -28,8 +31,7 @@ const SearchBar = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement> | React.MouseEvent<SVGElement, MouseEvent>) => {
     event.preventDefault();
-    products.get(API_PRODUCT_URI).then(resp => console.log(resp))
-    console.log('YEAYY', searchData.searchValue)
+    dispatch(fetchProductsAction(searchData.searchValue));
   } 
 
   return (

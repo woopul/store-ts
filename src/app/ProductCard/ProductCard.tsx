@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import {Product} from '../../models/Product'
 
 const CardContainer = styled.div`
   width: 288px;
@@ -17,16 +18,6 @@ const CardContainer = styled.div`
   }
 `
 
-export interface ProductCardProps {  
-  active: boolean;
-  description: string;
-  id: boolean;
-  image: string;
-  name: string;
-  promo: false;
-  rating: boolean;
-}
-
 const ProductCard = ({
   active,
   description,
@@ -34,7 +25,7 @@ const ProductCard = ({
   image,
   name,
   promo,
-  rating} : ProductCardProps) => {
+  rating} : Product) => {
 
   return (
     <CardContainer>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import ProductCard, {ProductCardProps}  from '../ProductCard/ProductCard'
+import ProductCard from '../ProductCard/ProductCard'
+import { Product } from '../../models/Product'
 import products from '../../config/api';
 import styled from 'styled-components';
 import { API_PRODUCT_URI } from '../../constants/api'
@@ -14,24 +15,24 @@ const Container = styled.div`
 `
 
 const ProductsContent = () => {
-  const [cards, setCards] = useState<ProductCardProps[]>([])
+  const [cards, setCards] = useState<Product[]>([])
 
   useEffect(() => {
     const renderProducts = async () => {
       const response = await products.get(`${API_PRODUCT_URI}?limit=10`);
-      const content = await response.data.items.map((item: ProductCardProps) => <ProductCard {...item} />)
+      const content = await response.data.items.map((item: Product) => <ProductCard {...item} />)
       setCards(content)
     }
     renderProducts()
   }, [])
 
   return (
-  <> 
-    <h1>Products</h1>
-    <Container>
-      {cards}
-    </Container>
-  </>
+    <>
+      <h1>Products</h1>
+      <Container>
+        {cards}
+      </Container>
+    </>
   )
 }
 
