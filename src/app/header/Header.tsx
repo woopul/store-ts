@@ -14,7 +14,7 @@ background: #fff;
 const Logo = styled.h1`
   color: #000;
   font-size: 24px;
-  font-family: 'Nunito'
+  font-family: 'Nunito';
 `
 
 const User = styled.div`
@@ -25,27 +25,13 @@ const User = styled.div`
   margin-left: auto;
 `
 
-const Header = () => {
-  const [searchValue, setSearchValue] = useState<string>('')
-
-  const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setSearchValue(event.target.value)
-  }
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement> | React.MouseEvent<SVGElement, MouseEvent>) => {
-    event.preventDefault();
-    console.log('YEAYY')
-  }
+export const Header = () => {
 
   return (
     <Container>
       <Logo>join.tsh.io</Logo>
-      <SearchBar/>
+      <SearchBar />
       <User />
     </Container>
   )
 }
-
-export default Header;

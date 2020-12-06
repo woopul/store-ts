@@ -5,3 +5,7 @@ export const selectProductsError = (state: AppState) =>
 export const selectProductsLoading = (state: AppState) =>
   state.products.loading;
 export const selectProductsList = (state: AppState) => state.products.list;
+
+export const selectProductsFilters = (state: AppState) => state.products.filters;
+export const selectProductsPage = (state: AppState) => state.products.page;
+export const selectProductsSearchTerm = (state: AppState) => state.products.searchTerm;

@@ -7,3 +7,10 @@ export interface Product {
   promo: false;
   rating: number;
 }
+
+export interface ProductsQuery {
+  searchTerm: string;
+  page: number;
+  active: boolean | undefined;
+  promo: boolean | undefined;
+}

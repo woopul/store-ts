@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux';
 import { all, put, select, takeLatest } from 'redux-saga/effects';
 import { Product } from '../../models/Product';
 import { setErrorAction, setProductsAction } from './actions';
@@ -8,10 +9,9 @@ import {
 } from './actionTypes';
 import { fetchProductsApi } from './api';
 
-
-function* fetchTournamentsSaga({ payload }: FetchProducts) {
+function* fetchProductsSaga({ payload: queryParams }: FetchProducts) {
   try {
-    const response = yield fetchProductsApi(payload.searchTerm);
+    const response = yield fetchProductsApi(queryParams);
     console.log('inside sag', response);
     yield put(setProductsAction(response.data.items));
   } catch {
@@ -21,6 +21,6 @@ function* fetchTournamentsSaga({ payload }: FetchProducts) {
 
 export default function* productsSaga() {
   yield all([
-    takeLatest(ProductsActionTypes.FETCH_PRODUCTS, fetchTournamentsSaga),
+    takeLatest(ProductsActionTypes.FETCH_PRODUCTS, fetchProductsSaga),
   ]);
 }

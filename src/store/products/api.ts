@@ -1,14 +1,17 @@
-import { fetchProductsAction } from './actions';
 import api from '../../config/api';
 import { API_PRODUCT_URI } from '../../constants/api';
+import { ProductsQuery } from '../../models/Product'
 
-export const fetchProductsApi = (searchTerm?: string, limit?: number, page?: number, promo?: boolean, active?: boolean ) =>
-  api.get(API_PRODUCT_URI, {
+export const fetchProductsApi = (params: ProductsQuery) => {
+  const { searchTerm: search, active, promo, page } = params
+  return api.get(API_PRODUCT_URI, {
     params: {
-      search: searchTerm,
-      limit,
-      page,
+      search,
+      active,
       promo,
-      active
+      page,
+      limit: 10,
     }
-  });
+  }
+  )
+};

@@ -1,17 +1,20 @@
 import { setProductsAction } from './actions';
-import { Product } from './../../models/Product';
+import { Product, ProductsQuery } from './../../models/Product';
+import { SearchFilter } from '../../app/SearchBar/SearchBar'
+
 
 export enum ProductsActionTypes {
   SET_PRODUCTS = 'SET_PRODUCTS',
   FETCH_PRODUCTS = 'FETCH_PRODUCTS',
-  SET_ERROR = 'SET_ERROR'
+  SET_ERROR = 'SET_ERROR',
+  SET_VALUE = 'SET_VALUE',
+  SET_FILTERS = 'SET_FILTERS',
+  SET_PAGE = 'SET_PAGE',
 }
 
 export interface FetchProducts {
   type: typeof ProductsActionTypes.FETCH_PRODUCTS,
-  payload: {
-    searchTerm?: string;
-  };
+  payload: ProductsQuery;
 }
 
 export interface SetProducts {
@@ -28,7 +31,29 @@ export interface SetError {
   };
 }
 
+export interface SetValue {
+  type: typeof ProductsActionTypes.SET_VALUE,
+  payload: {
+    searchValue: string;
+  };
+}
+
+export interface SetPage {
+  type: typeof ProductsActionTypes.SET_PAGE,
+  payload: {
+    page: number;
+  };
+}
+
+export interface SetFilters {
+  type: typeof ProductsActionTypes.SET_FILTERS,
+  payload: SearchFilter
+}
+
 export type ProductsActions =
   | SetProducts
   | FetchProducts
   | SetError
+  | SetValue
+  | SetPage
+  | SetFilters

@@ -41,6 +41,7 @@ export const SearchInput = styled.input`
   padding: 16px;
   border-radius: 8px;
   transition: all .4s;
+ 
   &:focus {
     border: 1px solid #aeafaf;
 }

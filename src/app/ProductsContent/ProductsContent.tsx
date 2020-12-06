@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import ProductCard from '../ProductCard/ProductCard'
+import { ProductCard } from '../ProductCard/ProductCard'
 import { Product } from '../../models/Product'
 import products from '../../config/api';
 import styled from 'styled-components';
 import { API_PRODUCT_URI } from '../../constants/api'
+import { useSelector } from 'react-redux';
+import { selectProductsList, selectProductsLoading } from 'store/products/selectors';
 
 const Container = styled.div`
   flex: 0 1 1440px;
@@ -14,26 +16,18 @@ const Container = styled.div`
   grid-gap: 24px;
 `
 
-const ProductsContent = () => {
-  const [cards, setCards] = useState<Product[]>([])
-
-  useEffect(() => {
-    const renderProducts = async () => {
-      const response = await products.get(`${API_PRODUCT_URI}?limit=10`);
-      const content = await response.data.items.map((item: Product, i: number) => <ProductCard key={i} {...item} />)
-      setCards(content)
-    }
-    renderProducts()
-  }, [])
+export const ProductsContent = () => {
+  const productsList = useSelector(selectProductsList)
+  const isLoading = useSelector(selectProductsLoading)
 
   return (
     <>
-      <h1>Products</h1>
       <Container>
-        {cards}
+        {isLoading && `LOADING ....`}
+        {productsList.length > 0 ?
+          productsList.map((item: Product, i: number) => <ProductCard key={i} {...item} />) :
+          `NOT FOUND`}
       </Container>
     </>
   )
 }
-
-export default ProductsContent;
