@@ -91,7 +91,6 @@ export const ProductCard = ({
         <h6>{name}</h6>
         <p className='description'>{description}</p>
         <div className="promo">{promo}</div>
-        {active && <p>active </p>}
         {promo && <PromoFlag active={active}>Promo</PromoFlag>}
         <div className="rating">{renderRating()}</div>
         <Button disabled={!active} >{active ? `Show details` : `Unavailable`}</Button>

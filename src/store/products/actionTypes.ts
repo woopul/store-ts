@@ -10,6 +10,7 @@ export enum ProductsActionTypes {
   SET_VALUE = 'SET_VALUE',
   SET_FILTERS = 'SET_FILTERS',
   SET_PAGE = 'SET_PAGE',
+  SET_TOTAL_PAGES = 'SET_TOTAL_PAGES'
 }
 
 export interface FetchProducts {
@@ -45,6 +46,13 @@ export interface SetPage {
   };
 }
 
+export interface SetTotalPages {
+  type: typeof ProductsActionTypes.SET_TOTAL_PAGES,
+  payload: {
+    totalPages: number
+  };
+}
+
 export interface SetFilters {
   type: typeof ProductsActionTypes.SET_FILTERS,
   payload: SearchFilter
@@ -57,3 +65,4 @@ export type ProductsActions =
   | SetValue
   | SetPage
   | SetFilters
+  | SetTotalPages

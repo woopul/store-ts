@@ -5,6 +5,7 @@ import {
   SetValue,
   SetFilters,
   SetPage,
+  SetTotalPages,
   ProductsActionTypes,
 } from './actionTypes';
 import { Product, ProductsQuery } from '../../models/Product';
@@ -16,12 +17,21 @@ export const setValueAction = (searchValue: string): SetValue => ({
   payload: { searchValue }
 });
 
-export const setPaginationAction = (
+export const setPageNumberAction = (
   pageNumber: number
 ): SetPage => ({
   type: ProductsActionTypes.SET_PAGE,
   payload: {
     page: pageNumber,
+  }
+});
+
+export const setTotalPageNumberAction = (
+  totalPages: number
+): SetTotalPages => ({
+  type: ProductsActionTypes.SET_TOTAL_PAGES,
+  payload: {
+    totalPages
   }
 });
 

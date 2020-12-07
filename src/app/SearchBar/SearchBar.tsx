@@ -26,20 +26,13 @@ const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const filters: SearchFilter = useSelector(selectProductsFilters);
 
-  const debouncedFetchProducts = useCallback(
-    debounce(searchTerm => {
-      dispatch(setValueAction(searchTerm));
-    }, 300),
-    []
-  );
-
   const handleChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(target.value)
-    debouncedFetchProducts(target.value);
+    setSearchTerm(target.value);
+    dispatch(setValueAction(target.value))
   }
 
   const handleChangeFilter = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(setFilteresAction({ [target.name]: target.checked }))
+    dispatch(setFilteresAction({ [target.name]: target.checked ?? undefined }))
   }
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement> | React.MouseEvent<SVGElement, MouseEvent>) => {

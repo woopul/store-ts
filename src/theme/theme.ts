@@ -18,7 +18,10 @@ const theme = {
     },
     text: {
       primary: '#000',
-      cardDescription: '#9194A5', 
+      cardDescription: '#9194A5',
+      paginationCurrent: "#4460F7",
+      paginationHover: "#2140E8",
+      paginationDiabled: "#9194A5",
     }
   },
   spacing: (multiplier = 1) => `${4 * multiplier}px`,

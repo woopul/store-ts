@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { all, put, select, takeLatest } from 'redux-saga/effects';
 import { Product } from '../../models/Product';
-import { setErrorAction, setProductsAction } from './actions';
+import { setErrorAction, setProductsAction, setTotalPageNumberAction } from './actions';
 import {
   FetchProducts,
   SetProducts,
@@ -14,6 +14,7 @@ function* fetchProductsSaga({ payload: queryParams }: FetchProducts) {
     const response = yield fetchProductsApi(queryParams);
     console.log('inside sag', response);
     yield put(setProductsAction(response.data.items));
+    yield put(setTotalPageNumberAction(response.data.meta.totalPages));
   } catch {
     yield put(setErrorAction('Something went wrong.'));
   }

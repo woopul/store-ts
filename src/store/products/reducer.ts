@@ -5,34 +5,43 @@ import {
 import { Product } from '../../models/Product'
 
 export interface ProductsState {
-  page: number,
-  searchTerm: string,
+  error: string;
   filters: {
     promo: boolean | undefined,
     active: boolean | undefined,
   },
-  error: string;
-  loading: boolean;
+  links: {
+    first: string
+    last: string
+  }
   list: Product[];
+  loading: boolean;
+  totalPages: number | null;
+  page: number,
+  searchTerm: string,
 }
 
 const initialState = {
-  page: 1,
-  searchTerm: '',
+  error: '',
   filters: {
     promo: undefined,
     active: undefined,
   },
-  error: '',
+  links: {
+    first: '',
+    last: '',
+  },
+  list: [],
   loading: true,
-  list: []
+  page: 1,
+  searchTerm: '',
+  totalPages: null,
 };
 
 export default (
   state: ProductsState = initialState,
   action: ProductsActions
 ): ProductsState => {
-  console.log(state)
   switch (action.type) {
     case ProductsActionTypes.FETCH_PRODUCTS:
       return {
@@ -77,6 +86,19 @@ export default (
         ...state,
         searchTerm: action.payload.searchValue
       };
+
+    case ProductsActionTypes.SET_TOTAL_PAGES:
+      return {
+        ...state,
+        totalPages: action.payload.totalPages
+      };
+
+    case ProductsActionTypes.SET_PAGE:
+      return {
+        ...state,
+        page: action.payload.page
+      };
+
     default:
       return state;
   }
