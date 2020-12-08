@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { debounce } from 'lodash';
 import { fetchProductsAction } from '../../store/products/actions';
 import { selectProductsFilters, selectProductsPage, selectProductsSearchTerm, selectProductsPerPageLimit } from '../../store/products/selectors';
-import { Link } from 'react-router-dom';
 import { Header } from '../Header/Header';
 import { ProductsContent } from '../ProductsContent/ProductsContent';
 import { Pagination } from '../Pagination/Pagination';

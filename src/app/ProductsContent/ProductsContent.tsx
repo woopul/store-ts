@@ -9,11 +9,11 @@ import { Product } from '../../models/Product';
 import { NotFound } from 'app/NotFound/NotFound';
 
 const Container = styled.div`
-  flex: 0 1 1440px;
-  padding: 0 108px; 
   display: grid;
   place-items: center;
-  margin-top: 56px;
+  max-width: 1440px;
+  margin: 56px auto 0 auto;
+  padding: 0 108px; 
   grid-template-columns: repeat(auto-fit, minmax(288px, 1fr));
   grid-gap: 24px;
   
@@ -32,16 +32,13 @@ export const ProductsContent = () => {
   const isLoading = useSelector(selectProductsLoading);
   const matchesPhone = useMediaQuery('(max-width:600px)');
   const matchesMedium = useMediaQuery('(max-width:1456px)');
-  const matchesLarge = useMediaQuery('(max-width:1600px)');
 
   if (matchesPhone) {
     dispatch(setLimitAction(4))
   } else if (matchesMedium) {
     dispatch(setLimitAction(6))
-  } else if (matchesLarge) {
-    dispatch(setLimitAction(8))
   } else {
-    dispatch(setLimitAction(10))
+    dispatch(setLimitAction(8))
   }
 
   return (

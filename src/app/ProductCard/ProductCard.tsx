@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Button from '../common/Button/Button';
+import { Button } from '../common/Button/Button';
 import { Product } from '../../models/Product';
 import { ReactComponent as StarFilled } from '../../assets/icons/starFull.svg';
 import { ReactComponent as StarEmpty } from '../../assets/icons/starEmpty.svg';

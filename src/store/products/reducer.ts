@@ -28,7 +28,7 @@ const initialState = {
     promo: undefined,
     active: undefined,
   },
-  limit: 10,
+  limit: 8,
   links: {
     first: '',
     last: '',

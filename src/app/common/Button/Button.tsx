@@ -1,9 +1,12 @@
 import styled, { css } from 'styled-components';
 import theme from '../../../theme/theme';
 
-const Button = styled.button<{ active?: boolean, secondary?: boolean }>`
+export const Button = styled.button<{ active?: boolean, secondary?: boolean }>`
   height: 38px;
   border-radius: 4px;
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: 600;
   color: #fff;
   border: none;
   background: ${theme.palette.button.primary};
@@ -42,5 +45,3 @@ const Button = styled.button<{ active?: boolean, secondary?: boolean }>`
   outline: none;
 }
 `
-
-export default Button;

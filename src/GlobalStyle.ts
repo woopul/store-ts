@@ -10,6 +10,7 @@ const GlobalStyle = createGlobalStyle`
     overflow-y: scroll;
   }
 
+  
   * {
     box-sizing: border-box;
     margin: 0;

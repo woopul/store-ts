@@ -1,7 +1,8 @@
-import React from 'react';
-import SearchBar from '../SearchBar/SearchBar';
+import React, { useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
 import user from '../../assets/avatar/avatar.png'
+import SearchBar from '../SearchBar/SearchBar';
+import { Button } from '../common/Button/Button';
 
 const Container = styled.div`
   width: 100vw;
@@ -9,6 +10,7 @@ const Container = styled.div`
   background: #fff;
   display: flex;
   align-items: center;
+  justify-content: center;
     @media (max-width: 1100px) {
       height: auto;
       padding: 42px 24px 20px 24px;
@@ -28,7 +30,7 @@ const HeaderContent = styled.div`
     grid-template-rows: repeat(2, auto);
     grid-template-areas:
       "logo user"
-      "search search"
+      "search search";
   }
   `
 
@@ -38,12 +40,32 @@ const Logo = styled.h1`
   font-size: 24px;
   font-family: 'Nunito';
 `
+const UserMenu = styled.ul<{ open: boolean }>`
+    display: ${props => props.open ? 'block' : 'none'};
+    position: absolute;
+    list-style: none;
+    top: 76px;
+    background: #fff;
+    left: -138px;
+    width: 185px;
+    padding: 10px 16px;
+    border-radius: 4px;
+    box-shadow: 0px 8px 32px rgba(17, 18, 20, 0.158514);
+
+    li {
+      font-size: 14px;
+      line-height: 30px;
+      &:hover {
+        font-weight: bold;
+      }
+    }
+`
 
 const User = styled.div<{ bg: string }>`
+  position: relative;
   min-width: 48px;
   min-height: 48px;
   grid-area: user;
-  background: #bada55;
   border-radius: 50%; 
   margin-left: auto;
   background: url(${props => props.bg});
@@ -53,15 +75,55 @@ const User = styled.div<{ bg: string }>`
   }
 `
 
+const UserLoginContainer = styled.div`
+  position: relative;
+  grid-area: user;
+  font-size: 14px;
+  margin-left: auto;
+
+  .button-login {
+    width: 88px;
+  }
+`
+
 export const Header = () => {
+  const [isLoggedIn, setLogin] = useState<boolean>(true);
+  const [isMenuOpen, setMenuOpen] = useState<boolean>(false);
+
+  const menuNode = useRef<HTMLUListElement>(null);
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleCloseMenu);
+
+    return () => document.removeEventListener("mousedown", handleCloseMenu);
+  }, [])
+
+  const handleCloseMenu = (event: MouseEvent): any => {
+    if (menuNode && !menuNode.current?.contains(event.target as Node)) {
+      setMenuOpen(false);
+    }
+  }
+
+  const handleMenuOpen = () => {
+    setMenuOpen(prev => !prev);
+  }
 
   return (
     <Container>
       <HeaderContent>
         <Logo>join.tsh.io</Logo>
         <SearchBar />
-        <User bg={user} />
+        <UserLoginContainer>
+          {isLoggedIn ?
+            <User bg={user} onClick={handleMenuOpen}>
+              <UserMenu open={isMenuOpen} ref={menuNode}>
+                <li onClick={() => setLogin(false)}>Logout</li>
+              </UserMenu>
+            </User> :
+            <Button onClick={() => setLogin(true)} className='button-login' secondary>LogIn</Button>
+          }
+        </UserLoginContainer>
       </HeaderContent>
-    </Container>
+    </Container >
   )
 }
