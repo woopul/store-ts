@@ -13,4 +13,5 @@ export interface ProductsQuery {
   page: number;
   active: boolean | undefined;
   promo: boolean | undefined;
+  limit: number;
 }

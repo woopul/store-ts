@@ -3,7 +3,7 @@ import { API_PRODUCT_URI } from '../../constants/api';
 import { ProductsQuery } from '../../models/Product'
 
 export const fetchProductsApi = (params: ProductsQuery) => {
-  const { searchTerm: search, active, promo, page } = params
+  const { searchTerm: search, active, promo, page, limit } = params
   console.log('fetching')
   return api.get(API_PRODUCT_URI, {
     params: {
@@ -11,7 +11,7 @@ export const fetchProductsApi = (params: ProductsQuery) => {
       active: active ? true : undefined,
       promo: promo ? true : undefined,
       page,
-      limit: 8,
+      limit
     }
   }
   )

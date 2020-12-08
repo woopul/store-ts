@@ -15,6 +15,7 @@ const theme = {
       primary: '#4460F7',
       hover: '#2140E8',
       disabled: '#9194A5',
+      borderSecondary: '#4460F7'
     },
     text: {
       primary: '#000',

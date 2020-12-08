@@ -14,13 +14,18 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   
+  @media (max-width: 650px) {
+    width: 100%;
+  }
+
   h3 {
     font-size: 18px;
     maring-top: 22px;
   }
+
   .description {
     font-size: 14px;
-    color: ${theme.palette.text.cardDescription}
+    color: ${theme.palette.text.cardDescription};
   }
 `
 

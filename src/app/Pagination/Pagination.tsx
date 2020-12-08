@@ -1,13 +1,10 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
 import ReactPagination from '@material-ui/lab/Pagination';
 import styled from 'styled-components';
 import { setPageNumberAction } from '../../store/products/actions';
 import { selectProductsPage, selectProductsTotalPages } from '../../store/products/selectors';
-import ReactPaginate from 'react-paginate';
 import { selectProductsList, selectProductsLoading } from 'store/products/selectors';
-import theme from '../../theme/theme'
 
 const Container = styled.div<{ currentPage: number }>`
   margin: 40px 0;
@@ -16,21 +13,9 @@ const Container = styled.div<{ currentPage: number }>`
   font-size: 20px;
 `
 
-const useStyles = makeStyles((theme) =>
-  createStyles({
-    root: {
-      '& > * + *': {
-        marginTop: theme.spacing(2),
-        fontSize: '16px',
-      },
-    },
-  }),
-);
-
 export const Pagination = () => {
   const productsList = useSelector(selectProductsList);
   const isLoading = useSelector(selectProductsLoading);
-  const classes = useStyles();
   const dispatch = useDispatch();
   const totalPages: number = useSelector(selectProductsTotalPages)!;
   const currentPage: number = useSelector(selectProductsPage);

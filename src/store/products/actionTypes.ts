@@ -1,4 +1,3 @@
-import { setProductsAction } from './actions';
 import { Product, ProductsQuery } from './../../models/Product';
 import { SearchFilter } from '../../app/SearchBar/SearchBar'
 
@@ -10,7 +9,8 @@ export enum ProductsActionTypes {
   SET_VALUE = 'SET_VALUE',
   SET_FILTERS = 'SET_FILTERS',
   SET_PAGE = 'SET_PAGE',
-  SET_TOTAL_PAGES = 'SET_TOTAL_PAGES'
+  SET_TOTAL_PAGES = 'SET_TOTAL_PAGES',
+  SET_LIMIT = 'SET_LIMIT',
 }
 
 export interface FetchProducts {
@@ -58,6 +58,11 @@ export interface SetFilters {
   payload: SearchFilter
 }
 
+export interface SetLimit {
+  type: typeof ProductsActionTypes.SET_LIMIT,
+  payload: { limit: number }
+}
+
 export type ProductsActions =
   | SetProducts
   | FetchProducts
@@ -66,3 +71,4 @@ export type ProductsActions =
   | SetPage
   | SetFilters
   | SetTotalPages
+  | SetLimit

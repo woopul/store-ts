@@ -15,6 +15,9 @@ const CardContainer = styled.div<{ active: boolean }>`
   height: 400px;
   border-radius: 8px;
   overflow: hidden;
+  &:hover {
+  box-shadow: ${props => props.active ? '2px 2px 8px 1px #8a8a8a2e' : 'none'};
+  }
 
   .content {
     padding: 0 16px 24px 16px;
@@ -79,7 +82,7 @@ export const ProductCard = ({
 
   const renderRating = () => {
     return Array(5).fill(null).map((n, i) => {
-      return i < rating ? <StarFilled className='star' /> : <StarEmpty className='star' />
+      return i < rating ? <StarFilled key={i} className='star' /> : <StarEmpty key={i} className='star' />
     }
     )
   }

@@ -1,10 +1,7 @@
-import { useSelector } from 'react-redux';
-import { all, put, select, takeLatest } from 'redux-saga/effects';
-import { Product } from '../../models/Product';
+import { all, put, takeLatest } from 'redux-saga/effects';
 import { setErrorAction, setProductsAction, setTotalPageNumberAction } from './actions';
 import {
   FetchProducts,
-  SetProducts,
   ProductsActionTypes
 } from './actionTypes';
 import { fetchProductsApi } from './api';

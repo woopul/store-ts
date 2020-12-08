@@ -10,6 +10,7 @@ export interface ProductsState {
     promo: boolean | undefined,
     active: boolean | undefined,
   },
+  limit: number,
   links: {
     first: string
     last: string
@@ -27,6 +28,7 @@ const initialState = {
     promo: undefined,
     active: undefined,
   },
+  limit: 10,
   links: {
     first: '',
     last: '',
@@ -57,6 +59,12 @@ export default (
         list: action.payload.products
       };
 
+    case ProductsActionTypes.SET_LIMIT:
+      return {
+        ...state,
+        limit: action.payload.limit
+      };
+
     case ProductsActionTypes.SET_ERROR:
       return {
         ...state,
@@ -79,12 +87,6 @@ export default (
           ...state.filters,
           ...action.payload
         }
-      };
-
-    case ProductsActionTypes.SET_VALUE:
-      return {
-        ...state,
-        searchTerm: action.payload.searchValue
       };
 
     case ProductsActionTypes.SET_TOTAL_PAGES:

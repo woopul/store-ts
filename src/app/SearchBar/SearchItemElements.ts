@@ -1,11 +1,40 @@
 import styled from 'styled-components';
 
-export const SearchForm = styled.form`
-  display:flex;
-  align-items: center;
+export const CheckboxContainer = styled.div`
+  display: grid;
+  grid-template-columns: min-content auto;
+  grid-gap: 32px;
+  margin: 0 24px;
+`
 
+export const SearchForm = styled.form`
+  grid-area: search;
+  display:flex;
+  margin-left: 108px;
+  align-items: center;
+  
+  @media (max-width: 1100px) {
+    margin: 24px 0 0 0;
+    ${CheckboxContainer} {
+      margin-left: 10%;
+    }
+  }
+
+  @media (max-width: 700px) {
+    flex-direction: column;
+    align-items: flex-start;
+    ${CheckboxContainer} {
+      margin: 24px 0  0 0;
+    }
+  }
+  
   .search-label {
     position: relative;
+    width: 392px;
+    
+    @media (max-width: 470px) {
+      width: 100%;
+    }
 
     input:focus + .search-icon {
       color: #000;
@@ -33,25 +62,17 @@ export const SearchForm = styled.form`
 `
 
 export const SearchInput = styled.input`
-  margin-left: 105px;
   outline: none;
   line-height: 16px;
   border: 1px solid #E0E2EA;
-  width: 392px;
+  width: 100%;
   padding: 16px;
   border-radius: 8px;
   transition: all .4s;
  
   &:focus {
     border: 1px solid #aeafaf;
-}
-`
-
-export const CheckboxContainer = styled.div`
-  display: grid;
-  grid-template-columns: min-content auto;
-  grid-gap: 32px;
-  margin: 0 24px;
+  }
 `
 
 export const StyledCheckbox = styled.label`

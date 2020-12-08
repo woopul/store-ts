@@ -7,6 +7,7 @@ import {
   SetPage,
   SetTotalPages,
   ProductsActionTypes,
+  SetLimit,
 } from './actionTypes';
 import { Product, ProductsQuery } from '../../models/Product';
 import { SearchFilter } from '../../app/SearchBar/SearchBar'
@@ -62,5 +63,12 @@ export const setErrorAction = (error: string): SetError => ({
   type: ProductsActionTypes.SET_ERROR,
   payload: {
     error
+  }
+});
+
+export const setLimitAction = (limit: number): SetLimit => ({
+  type: ProductsActionTypes.SET_LIMIT,
+  payload: {
+    limit
   }
 });
