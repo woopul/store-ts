@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.js": "/store-ts/static/js/main.c900c6d9.chunk.js",
+    "main.js.map": "/store-ts/static/js/main.c900c6d9.chunk.js.map",
+    "runtime-main.js": "/store-ts/static/js/runtime-main.2c04ad08.js",
+    "runtime-main.js.map": "/store-ts/static/js/runtime-main.2c04ad08.js.map",
+    "static/js/2.6c49257c.chunk.js": "/store-ts/static/js/2.6c49257c.chunk.js",
+    "static/js/2.6c49257c.chunk.js.map": "/store-ts/static/js/2.6c49257c.chunk.js.map",
+    "index.html": "/store-ts/index.html",
+    "precache-manifest.9611e02ad77391c9bc89a08fe21f1662.js": "/store-ts/precache-manifest.9611e02ad77391c9bc89a08fe21f1662.js",
+    "service-worker.js": "/store-ts/service-worker.js",
+    "static/js/2.6c49257c.chunk.js.LICENSE.txt": "/store-ts/static/js/2.6c49257c.chunk.js.LICENSE.txt",
+    "static/media/bag.a8f1c989.svg": "/store-ts/static/media/bag.a8f1c989.svg",
+    "static/media/check.5cf5056b.svg": "/store-ts/static/media/check.5cf5056b.svg",
+    "static/media/starEmpty.249710cf.svg": "/store-ts/static/media/starEmpty.249710cf.svg",
+    "static/media/starFull.89725f44.svg": "/store-ts/static/media/starFull.89725f44.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2c04ad08.js",
+    "static/js/2.6c49257c.chunk.js",
+    "static/js/main.c900c6d9.chunk.js"
+  ]
+}
