@@ -80,7 +80,6 @@ export default (
       };
 
     case ProductsActionTypes.SET_FILTERS:
-      console.log('reducer', action.payload)
       return {
         ...state,
         filters: {

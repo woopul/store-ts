@@ -4,7 +4,7 @@ import { debounce } from 'lodash';
 import { fetchProductsAction } from '../../store/products/actions';
 import { selectProductsFilters, selectProductsPage, selectProductsSearchTerm, selectProductsPerPageLimit } from '../../store/products/selectors';
 import { Link } from 'react-router-dom';
-import { Header } from '../header/Header';
+import { Header } from '../Header/Header';
 import { ProductsContent } from '../ProductsContent/ProductsContent';
 import { Pagination } from '../Pagination/Pagination';
 
@@ -20,7 +20,6 @@ export const Products = () => {
   }, 300), []);
 
   useEffect(() => {
-    console.log(' after page changed')
     dispatch(fetchProductsAction({ searchTerm, page, active, promo, limit }));
   }, [active, promo, page, limit])
 
@@ -31,7 +30,6 @@ export const Products = () => {
   return (
     <>
       <Header />
-      {/* <Link to={AppRoute.login}> Login </Link> */}
       <ProductsContent />
       <Pagination />
     </>

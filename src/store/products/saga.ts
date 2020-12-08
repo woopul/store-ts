@@ -9,7 +9,6 @@ import { fetchProductsApi } from './api';
 function* fetchProductsSaga({ payload: queryParams }: FetchProducts) {
   try {
     const response = yield fetchProductsApi(queryParams);
-    console.log('inside sag', response);
     yield put(setProductsAction(response.data.items));
     yield put(setTotalPageNumberAction(response.data.meta.totalPages));
   } catch {

@@ -1,12 +1,15 @@
 {
 	"name": "react-interview-starter-ts",
 	"version": "0.1.0",
+	"homepage": "https://woopul.github.io/store-ts/",
 	"private": true,
 	"scripts": {
 		"build": "react-scripts build",
 		"coverage": "cross-env NODE_ICU_DATA=node_modules/full-icu react-scripts test --coverage --watchAll=false",
 		"eject": "react-scripts eject",
 		"start": "react-scripts start",
+		"predeploy": "npm run build",
+		"deploy": "gh-pages -d build",
 		"test": "cross-env NODE_ICU_DATA=node_modules/full-icu react-scripts test",
 		"serve": "./node_modules/.bin/http-server ./build --port 1337",
 		"e2e:open": "cd e2e && ./node_modules/.bin/cypress open; cd ..",

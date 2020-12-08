@@ -14,7 +14,7 @@ const Button = styled.button<{ active?: boolean, secondary?: boolean }>`
   }
   
   &:disabled {
-    background: ${theme.palette.button.disabled}
+    background: ${theme.palette.button.disabled};
     cursor: auto;
   }
   
