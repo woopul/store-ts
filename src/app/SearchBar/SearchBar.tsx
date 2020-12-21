@@ -26,7 +26,7 @@ const SearchBar = () => {
   }
 
   const handleChangeFilter = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(setFilteresAction({ [target.name]: target.checked ?? undefined }))
+    dispatch(setFilteresAction({ [target.name]: target.checked || undefined }))
   }
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement> | React.MouseEvent<SVGElement, MouseEvent>) => {

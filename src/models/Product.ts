@@ -15,3 +15,11 @@ export interface ProductsQuery {
   promo: boolean | undefined;
   limit: number;
 }
+
+export interface ProductDetailType {
+  state: string;
+  description: string;
+  image: string;
+  name: string;
+  onClose: () => void;
+}

@@ -4,6 +4,8 @@ import { setLimitAction } from '../../store/products/actions';
 import styled from 'styled-components';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { selectProductsList, selectProductsLoading } from 'store/products/selectors';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 import { ProductCard } from '../ProductCard/ProductCard';
 import { Product } from '../../models/Product';
 import { NotFound } from 'app/NotFound/NotFound';
@@ -22,8 +24,17 @@ const Container = styled.div`
   }
 
   .loader {
+    margin-top: 200px;
     place-self: center;
   }
+`
+
+const Loader = styled.div`
+  display: flex;
+  justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    place-self: center;
 `
 
 export const ProductsContent = () => {
@@ -44,7 +55,7 @@ export const ProductsContent = () => {
   return (
     <>
       <Container>
-        {isLoading && <div className="loader">Loading Products...</div>}
+        {isLoading && <CircularProgress size='50px' className='loader' />}
         {productsList.length > 0 ?
           productsList.map((item: Product, i: number) => <ProductCard key={i} {...item} />) :
           !isLoading && <NotFound />

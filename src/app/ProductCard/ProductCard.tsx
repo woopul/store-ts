@@ -1,10 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Button } from '../common/Button/Button';
 import { Product } from '../../models/Product';
+import { Transition } from 'react-transition-group';
 import { ReactComponent as StarFilled } from '../../assets/icons/starFull.svg';
 import { ReactComponent as StarEmpty } from '../../assets/icons/starEmpty.svg';
 import theme from '../../theme/theme'
+import { ProductDetail } from '../ProductDetail/ProductDetail';
+
+
+const ImageContainer = styled.div<{ image: string, active: boolean }>`
+  height: 180px;
+  width: 100%;
+  background: url(${props => props.image});
+  filter: ${props => !props.active && `grayscale(1) opacity(0.5)`};
+  background-size: 100%;
+  transition: all .8s;
+`
 
 const CardContainer = styled.div<{ active: boolean }>`
   position: relative;
@@ -15,8 +27,12 @@ const CardContainer = styled.div<{ active: boolean }>`
   height: 400px;
   border-radius: 8px;
   overflow: hidden;
-  &:hover {
-  box-shadow: ${props => props.active ? '2px 2px 8px 1px #8a8a8a2e' : 'none'};
+
+  &:hover, &:focus {
+    box-shadow: ${props => props.active ? '2px 2px 8px 1px #8a8a8a2e' : 'none'};
+    ${ImageContainer} {     
+      background-size: ${props => props.active ? '110%' : ''}
+    }
   }
 
   .content {
@@ -50,14 +66,6 @@ const CardContainer = styled.div<{ active: boolean }>`
   }
 `
 
-const ImageContainer = styled.div<{ image: string, active: boolean }>`
-  height: 180px;
-  width: 100%;
-  background: url(${props => props.image});
-  filter: ${props => !props.active && `grayscale(1) opacity(0.5)`};
-  background-size: cover;
-`
-
 const PromoFlag = styled.p <{ active: boolean }>`
   position: absolute;
   top: 20px;
@@ -79,12 +87,16 @@ export const ProductCard = ({
   name,
   promo,
   rating }: Product) => {
+  const [isDetailOpen, setDetailOpen] = useState(false);
 
   const renderRating = () => {
     return Array(5).fill(null).map((n, i) => {
       return i < rating ? <StarFilled key={i} className='star' /> : <StarEmpty key={i} className='star' />
-    }
-    )
+    });
+  }
+
+  const handleDetailClick = () => {
+    setDetailOpen(prev => !prev);
   }
 
   return (
@@ -96,8 +108,15 @@ export const ProductCard = ({
         <div className="promo">{promo}</div>
         {promo && <PromoFlag active={active}>Promo</PromoFlag>}
         <div className="rating">{renderRating()}</div>
-        <Button disabled={!active} >{active ? `Show details` : `Unavailable`}</Button>
+        <Button onClick={handleDetailClick} disabled={!active} >{active ? `Show details` : `Unavailable`}</Button>
       </div>
+      {/* {isDetailOpen && */}
+      <Transition in={isDetailOpen} timeout={300}>
+        {state => {
+          console.log(state);
+          return <ProductDetail state={state} description={description} image={image} name={name} onClose={handleDetailClick} />
+        }}
+      </Transition>
     </ CardContainer>
   )
 }

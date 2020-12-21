@@ -11,6 +11,9 @@ const Container = styled.div<{ currentPage: number }>`
   display: flex;
   justify-content: center;
   font-size: 20px;
+  @media (max-width: 1100px){
+    padding: 0 24px;
+  }
 `
 
 export const Pagination = () => {
@@ -41,7 +44,6 @@ export const Pagination = () => {
     <>
       {!isLoading && productsList.length > 0 &&
         <Container currentPage={currentPage}>
-          {isLoading}
           {renderPagination()}
         </Container>
       }

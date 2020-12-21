@@ -11,7 +11,7 @@ export const SearchForm = styled.form`
   grid-area: search;
   display:flex;
   margin-left: 108px;
-  align-items: center;
+  align-items: center; 
   
   @media (max-width: 1100px) {
     margin: 24px 0 0 0;

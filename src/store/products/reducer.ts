@@ -82,6 +82,7 @@ export default (
     case ProductsActionTypes.SET_FILTERS:
       return {
         ...state,
+        page: 1,
         filters: {
           ...state.filters,
           ...action.payload
