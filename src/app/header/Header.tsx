@@ -2,7 +2,8 @@ import React, { useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
 import user from '../../assets/avatar/avatar.png'
 import SearchBar from '../SearchBar/SearchBar';
-import { Button } from '../common/Button/Button';
+import { Button } from '../common/Button';
+import { Logo } from '../common/Logo';
 
 const Container = styled.div`
   width: 100vw;
@@ -34,12 +35,6 @@ const HeaderContent = styled.div`
   }
   `
 
-const Logo = styled.h1`
-  grid-area: logo;
-  color: #000;
-  font-size: 24px;
-  font-family: 'Nunito';
-`
 const UserMenu = styled.ul<{ open: boolean }>`
     display: ${props => props.open ? 'block' : 'none'};
     position: absolute;
@@ -111,7 +106,7 @@ export const Header = () => {
   return (
     <Container>
       <HeaderContent>
-        <Logo>join.tsh.io</Logo>
+        <Logo />
         <SearchBar />
         <UserLoginContainer>
           {isLoggedIn ?

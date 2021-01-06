@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import CloseIcon from '@material-ui/icons/Close';
 import styled from 'styled-components';
 import theme from '../../theme/theme';
-import { Button } from '../common/Button/Button'
+import { Button } from '../common/Button'
 import { ProductDetailType } from '../../models/Product';
 
 const MainWindowContainer = styled.div<{ image: string, state: string }>`

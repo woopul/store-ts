@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { BiSearch } from 'react-icons/bi';
 import { setValueAction, setFilteresAction } from '../../store/products/actions';
+import { Checkbox } from '../common/Checkbox';
+import { InputText } from '../common/InputText';
 import { ReactComponent as CheckdIcon } from '../../assets/icons/check.svg';
 import {
   SearchForm,
   SearchInput,
-  Checkbox,
-  StyledCheckbox,
   CheckboxContainer
 } from './SearchItemElements';
 
@@ -37,7 +37,7 @@ const SearchBar = () => {
   return (
     <SearchForm onSubmit={handleSubmit} >
       <label className="search-label">
-        <SearchInput
+        <InputText
           autoComplete='off'
           name='searchValue'
           onChange={handleChange}
@@ -46,29 +46,8 @@ const SearchBar = () => {
         <BiSearch onClick={handleSubmit} className='search-icon' />
       </label>
       <CheckboxContainer >
-        <StyledCheckbox >
-          <span className="checkbox__input">
-            <Checkbox onChange={handleChangeFilter} type="checkbox" name="active" />
-            <span className="checkbox__control">
-              <CheckdIcon className='checkbox__icon' />
-            </span>
-          </span>
-          <span className="checkbox__label">
-            Active
-          </span>
-        </StyledCheckbox>
-
-        <StyledCheckbox >
-          <span className="checkbox__input">
-            <Checkbox onChange={handleChangeFilter} type="checkbox" name="promo" />
-            <span className="checkbox__control">
-              <CheckdIcon className='checkbox__icon' />
-            </span>
-          </span>
-          <span className="checkbox__label">
-            Promo
-          </span>
-        </StyledCheckbox>
+        <Checkbox name='active' label='Active' onChange={handleChangeFilter} />
+        <Checkbox name='promo' label='Promo' onChange={handleChangeFilter} />
       </CheckboxContainer>
     </SearchForm >
   )

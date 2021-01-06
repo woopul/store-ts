@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Button } from '../common/Button/Button';
+import { Button } from '../common/Button';
 import { Product } from '../../models/Product';
 import { Transition } from 'react-transition-group';
 import { ReactComponent as StarFilled } from '../../assets/icons/starFull.svg';
@@ -9,14 +9,56 @@ import theme from '../../theme/theme'
 import { ProductDetail } from '../ProductDetail/ProductDetail';
 
 
+export const ProductCard = ({
+  active,
+  description,
+  id,
+  image,
+  name,
+  promo,
+  rating }: Product) => {
+  const [isDetailOpen, setDetailOpen] = useState(false);
+
+  const renderRating = () => {
+    return Array(5).fill(null).map((n, i) => {
+      return i < rating ? <StarFilled key={i} className='star' /> : <StarEmpty key={i} className='star' />
+    });
+  }
+
+  const handleDetailClick = () => {
+    setDetailOpen(prev => !prev);
+  }
+
+  return (
+    <CardContainer active={active}>
+      <ImageContainer image={image} active={active} />
+      <div className="content">
+        <h6>{name}</h6>
+        <p className='description'>{description}</p>
+        <div className="promo">{promo}</div>
+        {promo && <PromoFlag active={active}>Promo</PromoFlag>}
+        <div className="rating">{renderRating()}</div>
+        <Button onClick={handleDetailClick} disabled={!active} >{active ? `Show details` : `Unavailable`}</Button>
+      </div>
+      {/* {isDetailOpen && */}
+      <Transition in={isDetailOpen} timeout={300}>
+        {state => {
+          console.log(state);
+          return <ProductDetail state={state} description={description} image={image} name={name} onClose={handleDetailClick} />
+        }}
+      </Transition>
+    </ CardContainer>
+  )
+}
+
 const ImageContainer = styled.div<{ image: string, active: boolean }>`
-  height: 180px;
-  width: 100%;
-  background: url(${props => props.image});
-  filter: ${props => !props.active && `grayscale(1) opacity(0.5)`};
-  background-size: 100%;
-  transition: all .8s;
-`
+    height: 180px;
+    width: 100%;
+    background: url(${props => props.image});
+    filter: ${props => !props.active && `grayscale(1) opacity(0.5)`};
+    background-size: 100%;
+    transition: all .8s;
+  `
 
 const CardContainer = styled.div<{ active: boolean }>`
   position: relative;
@@ -78,45 +120,3 @@ const PromoFlag = styled.p <{ active: boolean }>`
   height: 24px;
   background-color: ${props => props.active ? theme.palette.attention.main : theme.palette.button.disabled};
 `
-
-export const ProductCard = ({
-  active,
-  description,
-  id,
-  image,
-  name,
-  promo,
-  rating }: Product) => {
-  const [isDetailOpen, setDetailOpen] = useState(false);
-
-  const renderRating = () => {
-    return Array(5).fill(null).map((n, i) => {
-      return i < rating ? <StarFilled key={i} className='star' /> : <StarEmpty key={i} className='star' />
-    });
-  }
-
-  const handleDetailClick = () => {
-    setDetailOpen(prev => !prev);
-  }
-
-  return (
-    <CardContainer active={active}>
-      <ImageContainer image={image} active={active} />
-      <div className="content">
-        <h6>{name}</h6>
-        <p className='description'>{description}</p>
-        <div className="promo">{promo}</div>
-        {promo && <PromoFlag active={active}>Promo</PromoFlag>}
-        <div className="rating">{renderRating()}</div>
-        <Button onClick={handleDetailClick} disabled={!active} >{active ? `Show details` : `Unavailable`}</Button>
-      </div>
-      {/* {isDetailOpen && */}
-      <Transition in={isDetailOpen} timeout={300}>
-        {state => {
-          console.log(state);
-          return <ProductDetail state={state} description={description} image={image} name={name} onClose={handleDetailClick} />
-        }}
-      </Transition>
-    </ CardContainer>
-  )
-}

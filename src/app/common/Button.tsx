@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import theme from '../../../theme/theme';
+import theme from '../../theme/theme';
 
 export const Button = styled.button<{ active?: boolean, secondary?: boolean }>`
   height: 38px;
